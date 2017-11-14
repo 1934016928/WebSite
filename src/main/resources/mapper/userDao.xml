@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skyrain.software.website.dao.UserDao">
+
+    <insert id="saveUser" parameterType="com.skyrain.software.website.entity.UserBean">
+        INSERT INTO USERS (USERNAME, USERPASS) VALUES (#{userName}, #{userPass})
+    </insert>
+</mapper> 

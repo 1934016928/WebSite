@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                http://www.springframework.org/schema/context
+                 http://www.springframework.org/schema/context/spring-context-3.2.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!-- 加载配置JDBC文件 -->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+
+    <!-- 数据源 -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <!--数据库连接驱动-->
+        <property name="driverClassName" value="${jdbc.driver_class}"/>
+        <!--数据库链接地址-->
+        <property name="url" value="${jdbc.connection.url}"/>
+        <!--数据库用户名-->
+        <property name="username" value="${jdbc.connection.username}"/>
+        <!--数据库密码-->
+        <property name="password" value="${jdbc.connection.password}"/>
+    </bean>
+
+    <!-- 开启注解配置 即Autowired -->
+    <!--其实component-scan 就有了annotation-config的功能即把需要的类注册到了spring容器中 -->
+    <context:component-scan base-package="com.skyrain.software.website"/>
+
+    <!-- 在使用mybatis时spring使用SqlSessionFactoryBean来管理mybatis的SqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--实体类映射文件路径-->
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+    </bean>
+
+    <!--动态代理实现不用写dao的实现 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- dao接口所在的路径，Spring会自动取扫描 -->
+        <property name="basePackage" value="com.skyrain.software.website.dao"/>
+        <!-- 如果只有一个数据源的话可以不用指定，但是如果有多个数据源的话必须要指定 -->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+    <!--事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!-- 使用全注释事务 -->
+    <tx:annotation-driven/>
+</beans>
