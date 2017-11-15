@@ -1,4 +1,4 @@
-package com.skyrain.software.website.emun;
+package com.skyrain.software.website.state;
 
 /**
  * 用户状态码

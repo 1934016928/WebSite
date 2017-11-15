@@ -1,16 +1,23 @@
 package com.skyrain.software.website.entity;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+
 import java.io.Serializable;
 
 /**
  * 用户实体类
  */
-public class UserBean implements Serializable {
+public class User implements Serializable {
     private static final long serialVersionUID = 3953315359223744279L;
     private String userName;
     private String userPass;
 
-    public UserBean(String userName, String userPass) {
+    public User() {
+
+    }
+
+    public User(String userName, String userPass) {
         this.userName = userName;
         this.userPass = userPass;
     }

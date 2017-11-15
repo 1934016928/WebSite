@@ -1,7 +1,7 @@
 package com.skyrain.software.website.imp;
 
 import com.skyrain.software.website.dao.UserDao;
-import com.skyrain.software.website.entity.UserBean;
+import com.skyrain.software.website.entity.User;
 import com.skyrain.software.website.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ public class UserServiceImp implements UserService {
     private UserDao userDao;
 
     @Override
-    public void addUser(UserBean userBean) {
-        userDao.saveUser(userBean);
+    public void addUser(User user) {
+        userDao.saveUser(user);
     }
 }

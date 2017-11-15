@@ -1,6 +1,6 @@
 package com.skyrain.software.website.service;
 
-import com.skyrain.software.website.entity.UserBean;
+import com.skyrain.software.website.entity.User;
 
 /**
  * 业务逻辑层接口
@@ -8,5 +8,5 @@ import com.skyrain.software.website.entity.UserBean;
 public interface UserService {
 
     /*添加用户*/
-    void addUser(UserBean userBean);
+    void addUser(User user);
 }

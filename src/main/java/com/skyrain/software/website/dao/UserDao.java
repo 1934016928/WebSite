@@ -1,6 +1,6 @@
 package com.skyrain.software.website.dao;
 
-import com.skyrain.software.website.entity.UserBean;
+import com.skyrain.software.website.entity.User;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository("userDao")
 public interface UserDao {
 
-    void saveUser(UserBean userBean);
+    void saveUser(User user);
 }
