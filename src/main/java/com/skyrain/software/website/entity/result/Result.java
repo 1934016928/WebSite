@@ -1,5 +1,7 @@
 package com.skyrain.software.website.entity.result;
 
+import com.skyrain.software.website.state.State;
+
 import java.io.Serializable;
 
 /**
@@ -20,15 +22,21 @@ public class Result implements Serializable {
     private Object data;
 
     public Result() {
-
+        this(State.Code.REQUEST_CODE_200, State.Msg.REQUEST_MSG_200);
     }
 
-    public Result(int code, String msg, long time, String token, Object data) {
+    public Result(int code, String msg, String token, Object data) {
         this.code = code;
         this.msg = msg;
-        this.time = time;
+        this.time = System.currentTimeMillis();
         this.token = token;
         this.data = data;
+    }
+
+    public Result(int code, String msg) {
+        this.code = code;
+        this.msg = msg;
+        this.time = System.currentTimeMillis();
     }
 
     public int getCode() {

@@ -2,8 +2,7 @@ package com.skyrain.software.website.controller;
 
 import com.skyrain.software.website.entity.result.Result;
 import com.skyrain.software.website.service.UserService;
-import com.skyrain.software.website.state.State;
-import com.skyrain.software.website.utils.RedisUtil;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,17 +19,54 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-    @Autowired
-    private RedisUtil redisUtil;
+    private static Logger logger = Logger.getLogger(UserController.class);
 
-    @RequestMapping(method = RequestMethod.POST, value = "/index")
+    /**
+     * 检查用户账户是否有重复
+     *
+     * @param account 用户账户
+     * @return 返回操作信息
+     */
+    @RequestMapping(method = RequestMethod.POST, value = "/queryAccount")
     @ResponseBody
-    public Result regUser(@RequestBody String json) {
-        redisUtil.set("json", json);
-        System.out.println("JSON=" + json + " ADD SUCCESS!");
-        System.out.println("SAVE TO REDIS DATA IS:" + redisUtil.get("json"));
-        redisUtil.remove("json");
-        System.out.println("SAVE TO REDIS DATA IS:" + redisUtil.get("json"));
-        return new Result(State.Code.REQUEST_CODE_200, State.Msg.REQUEST_MSG_200, System.currentTimeMillis(), null, null);
+    public Result queryAccount(String account) {
+        return userService.queryAccount(account);
+    }
+
+    /**
+     * 检查昵称是否可用
+     *
+     * @param name 用户名
+     * @return 返回操作信息
+     */
+    @RequestMapping(method = RequestMethod.POST, value = "/queryName")
+    @ResponseBody
+    public Result queryName(String name) {
+        return userService.queryName(name);
+    }
+
+    /**
+     * 用户注册接口
+     *
+     * @param json JSON数据
+     * @return 返回操作信息
+     */
+    @RequestMapping(method = RequestMethod.POST, value = "/signUp")
+    @ResponseBody
+    public Result signUp(@RequestBody String json) {
+        return userService.signUp(json);
+    }
+
+    /**
+     * 用户登陆接口
+     *
+     * @param account  登陆账户
+     * @param password 登陆密码
+     * @return 返回操作信息
+     */
+    @RequestMapping(method = RequestMethod.POST, value = "/signIn")
+    @ResponseBody
+    public Result signIn(String account, String password) {
+        return userService.signIn(account, password);
     }
 }
