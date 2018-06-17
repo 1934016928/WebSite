@@ -7,7 +7,7 @@
 
     <!-- 开启注解配置 即Autowired -->
     <!--其实component-scan 就有了annotation-config的功能即把需要的类注册到了spring容器中 -->
-    <context:component-scan base-package="com.skyrain.software.website"/>
+    <context:component-scan base-package="com.sky.software.scp"/>
 
     <!-- 加载配置文件 -->
     <context:property-placeholder location="classpath*:*.properties"/>

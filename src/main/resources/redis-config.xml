@@ -31,7 +31,7 @@
     </bean>
 
     <!-- cache配置 -->
-    <bean id="redisUtil" class="com.skyrain.software.website.utils.RedisUtil">
+    <bean id="redisUtil" class="com.sky.software.scp.utils.RedisUtil">
         <property name="redisTemplate" ref="redisTemplate"/>
     </bean>
 </beans>

@@ -1,0 +1,14 @@
+/build
+.gradle
+/out
+/classes
+.idea/workspace.xml
+.idea/dataSources.local.xml
+.idea/artifacts
+.idea/copyright
+.idea/dataSources
+.idea/libraries
+.idea/.name
+.idea/compiler.xml
+.idea/dataSources.xml
+.idea/workspace.xml___jb_tmp___

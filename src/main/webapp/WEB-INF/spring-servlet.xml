@@ -11,7 +11,7 @@
 
     <!-- context:component-scan 具有 annotation-config 的功能 -->
     <!-- 扫描控制器 -->
-    <context:component-scan base-package="com.skyrain.software.website"/>
+    <context:component-scan base-package="com.sky.software.scp"/>
 
     <!-- 视图解析器 前后端分离可忽略此部分 -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">

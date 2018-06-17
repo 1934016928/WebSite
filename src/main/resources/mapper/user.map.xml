@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sky.software.scp.dao.UserDao">
+
+    <!--创建用户-->
+    <insert id="cUser" parameterType="com.sky.software.scp.entity.User">
+        INSERT INTO scp_user (uName, uAccount, uPassword, uKey)
+        VALUES (#{uName}, #{uAccount}, #{uPassword}, #{uKey})
+    </insert>
+
+    <!--删除用户-->
+    <delete id="dUser" parameterType="com.sky.software.scp.entity.User">
+        DELETE FROM scp_user
+        WHERE uKey = #{uKey}
+    </delete>
+
+    <!--修改用户-->
+    <update id="uUser" parameterType="com.sky.software.scp.entity.User">
+        UPDATE scp_user
+        SET uName = #{uName}, uAccount = #{uAccount}, uPassword = #{uPassword}, uKey = #{uKey}
+        WHERE id = #{id} AND cTime = #{cTime}
+    </update>
+
+    <!--查询用户-->
+    <select id="qUser" parameterType="com.sky.software.scp.entity.User" resultType="com.sky.software.scp.entity.User">
+        SELECT *
+        FROM scp_user
+        WHERE uAccount = #{uAccount} OR uKey = #{uKey}
+        LIMIT 1
+    </select>
+</mapper> 

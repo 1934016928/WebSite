@@ -26,7 +26,7 @@
     <!--动态代理实现不用写dao的实现 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!-- dao接口所在的路径，Spring会自动取扫描 -->
-        <property name="basePackage" value="com.skyrain.software.website.dao"/>
+        <property name="basePackage" value="com.sky.software.scp.dao"/>
         <!-- 如果只有一个数据源的话可以不用指定，但是如果有多个数据源的话必须要指定 -->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
